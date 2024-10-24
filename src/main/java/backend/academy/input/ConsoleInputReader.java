@@ -32,8 +32,10 @@ public class ConsoleInputReader implements InputReader {
                 height = Maze.DEFAULT_HEIGHT;
                 width = Maze.DEFAULT_WIDTH;
             }
-
         }
+
+        height = Math.max(Math.min(Maze.MAX_HEIGHT, height), Maze.MIN_HEIGHT);
+        width = Math.max(Math.min(Maze.MAX_WIDTH, width), Maze.MIN_WIDTH);
 
         return new int[] {height, width};
     }

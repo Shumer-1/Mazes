@@ -54,9 +54,6 @@ public class Session {
         int height = mazeParams[0];
         int width = mazeParams[1];
 
-        height = Math.max(Math.min(Maze.MAX_HEIGHT, height), Maze.MIN_HEIGHT);
-        width = Math.max(Math.min(Maze.MAX_WIDTH, width), Maze.MIN_WIDTH);
-
         writer.writeMessage("Maze is " + height + "x" + width + "\n");
 
         Maze maze = generator.generate(height, width);
