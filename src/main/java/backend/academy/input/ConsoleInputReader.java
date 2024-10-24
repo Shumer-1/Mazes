@@ -59,10 +59,12 @@ public class ConsoleInputReader implements InputReader {
     @Override
     public boolean getContinueInfo() {
         String answer = scanner.nextLine();
-        while (!answer.equals("yes") && !answer.equals("no")) {
+        String confirmation = "yes";
+        String negation = "no";
+        while (!answer.equals(confirmation) && !answer.equals(negation)) {
             answer = scanner.nextLine();
         }
-        return answer.equals("yes");
+        return answer.equals(confirmation);
     }
 
     @Override
