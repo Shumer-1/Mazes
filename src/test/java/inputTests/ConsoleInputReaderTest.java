@@ -70,7 +70,7 @@ public class ConsoleInputReaderTest {
 
     @ParameterizedTest
     @MethodSource("getArgumentsForGetSpecificGeneratorTest")
-    void getSpecificGeneratorTest(List<String> inputValues, String expectedResult){
+    void getSpecificGeneratorTest(List<String> inputValues, String expectedResult) {
         var mockSequence = Mockito.when(MOCK_SCANNER.nextLine()).thenReturn(inputValues.getFirst());
         for (int i = 1; i < inputValues.size(); i++) {
             mockSequence.thenReturn(inputValues.get(i));
@@ -84,7 +84,7 @@ public class ConsoleInputReaderTest {
 
     @ParameterizedTest
     @MethodSource("getArgumentsForGetSpecificSolverTest")
-    void getSpecificSolverTest(List<String> inputValues, String expectedResult){
+    void getSpecificSolverTest(List<String> inputValues, String expectedResult) {
         var mockSequence = Mockito.when(MOCK_SCANNER.nextLine()).thenReturn(inputValues.getFirst());
         for (int i = 1; i < inputValues.size(); i++) {
             mockSequence.thenReturn(inputValues.get(i));
