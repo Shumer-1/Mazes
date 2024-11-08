@@ -4,6 +4,7 @@ import backend.academy.elements.Coordinates;
 import backend.academy.maze.Maze;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class ConsoleInputReader implements InputReader {
@@ -63,25 +64,25 @@ public class ConsoleInputReader implements InputReader {
         String answer = scanner.nextLine();
         String confirmation = "yes";
         String negation = "no";
-        while (!answer.equals(confirmation) && !answer.equals(negation)) {
+        while (!confirmation.equals(answer) && !negation.equals(answer)) {
             answer = scanner.nextLine();
         }
-        return answer.equals(confirmation);
+        return confirmation.equals(answer);
     }
 
     @Override
-    public String getSpecificGenerator() {
+    public String getSpecificGenerator(Set<String> generatorNumbers) {
         String answer = scanner.nextLine();
-        while (!answer.equals("prim") && !answer.equals("dfs")) {
+        while (!generatorNumbers.contains(answer)) {
             answer = scanner.nextLine();
         }
         return answer;
     }
 
     @Override
-    public String getSpecificSolver() {
+    public String getSpecificSolver(Set<String> solverNumbers) {
         String answer = scanner.nextLine();
-        while (!answer.equals("dijkstra") && !answer.equals("aStar")) {
+        while (!solverNumbers.contains(answer)) {
             answer = scanner.nextLine();
         }
         return answer;

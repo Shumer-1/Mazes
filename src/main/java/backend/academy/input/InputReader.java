@@ -2,6 +2,7 @@ package backend.academy.input;
 
 import backend.academy.elements.Coordinates;
 import java.util.InputMismatchException;
+import java.util.Set;
 
 public interface InputReader {
     int[] getMazeParams();
@@ -10,7 +11,7 @@ public interface InputReader {
 
     boolean getContinueInfo();
 
-    String getSpecificGenerator();
+    String getSpecificGenerator(Set<String> generatorNumbers);
 
-    String getSpecificSolver();
+    String getSpecificSolver(Set<String> solverNumbers);
 }
