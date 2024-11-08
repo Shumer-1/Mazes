@@ -5,6 +5,7 @@ import backend.academy.input.ConsoleInputReader;
 import backend.academy.maze.Maze;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class ConsoleInputReaderTest {
     private final static Scanner MOCK_SCANNER = Mockito.mock(Scanner.class);
+    private final static Set<String> generatorKeys = Set.of("1", "2");
+    private final static Set<String> solverKeys = Set.of("1", "2");
 
     @ParameterizedTest
     @MethodSource("getArgumentsForGetMazeParamsTest")
@@ -77,7 +80,7 @@ public class ConsoleInputReaderTest {
         }
         var inputReader = new ConsoleInputReader(MOCK_SCANNER);
 
-        String actualResult = inputReader.getSpecificGenerator();
+        String actualResult = inputReader.getSpecificGenerator(generatorKeys);
 
         assertThat(actualResult).isEqualTo(expectedResult);
     }
@@ -91,26 +94,26 @@ public class ConsoleInputReaderTest {
         }
         var inputReader = new ConsoleInputReader(MOCK_SCANNER);
 
-        String actualResult = inputReader.getSpecificSolver();
+        String actualResult = inputReader.getSpecificSolver(solverKeys);
 
         assertThat(actualResult).isEqualTo(expectedResult);
     }
 
     private static Stream<Arguments> getArgumentsForGetSpecificSolverTest() {
         return Stream.of(
-            Arguments.of(List.of("dikstra", "a*****", "dijkstra", "dfs", "?"), "dijkstra"),
-            Arguments.of(List.of("a*", "aStar", "dijkstra", "prim", "!"), "aStar"),
-            Arguments.of(List.of("aStar"), "aStar"),
-            Arguments.of(List.of("dijkstra"), "dijkstra")
+            Arguments.of(List.of("dikstra", "a*****", "2", "dfs", "?"), "2"),
+            Arguments.of(List.of("a*", "1", "dijkstra", "prim", "!"), "1"),
+            Arguments.of(List.of("1"), "1"),
+            Arguments.of(List.of("2"), "2")
         );
     }
 
     private static Stream<Arguments> getArgumentsForGetSpecificGeneratorTest() {
         return Stream.of(
-            Arguments.of(List.of("pram", "ghl", "prim", "dfs", "NO!!"), "prim"),
-            Arguments.of(List.of("dfs", "ssd", "prim", "prim", "prim!!"), "dfs"),
-            Arguments.of(List.of("dfs"), "dfs"),
-            Arguments.of(List.of("prim"), "prim")
+            Arguments.of(List.of("pram", "ghl", "1", "2", "NO!!"), "1"),
+            Arguments.of(List.of("2", "ssd", "1", "1", "1!!"), "2"),
+            Arguments.of(List.of("2"), "2"),
+            Arguments.of(List.of("1"), "1")
         );
     }
 
